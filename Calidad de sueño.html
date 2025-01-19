@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuestionario de Calidad de Sueño</title>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        form {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 600px;
+            width: 100%;
+            margin: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, button, fieldset {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        fieldset {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        legend {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        @media (max-width: 600px) {
+            form {
+                padding: 15px;
+            }
+            input, select, button, fieldset {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <form id="cuestionario-form">
+        <h1>Cuestionario de Calidad de Sueño</h1>
+
+        <!-- Preguntas -->
+        <label for="hora_acostarse">1. Durante el último mes, ¿cuál ha sido, normalmente, su hora de acostarse?</label>
+        <input type="time" id="hora_acostarse" name="hora_acostarse">
+
+        <label for="tiempo_dormir">2. ¿Cuánto tiempo habrá tardado en dormirse, normalmente, las noches del último mes?</label>
+        <select id="tiempo_dormir" name="tiempo_dormir">
+            <option value="menos_15">Menos de 15 min.</option>
+            <option value="16_30">Entre 16 y 30 min.</option>
+            <option value="31_60">Entre 31 y 60 min.</option>
+            <option value="mas_60">Más de 60 min.</option>
+        </select>
+
+        <label for="hora_levantarse">3. Durante el último mes, ¿a qué hora se ha levantado habitualmente por la mañana?</label>
+        <input type="time" id="hora_levantarse" name="hora_levantarse">
+
+        <label for="horas_dormidas">4. ¿Cuántas horas calcula que ha dormido verdaderamente cada noche durante el último mes?</label>
+        <input type="number" id="horas_dormidas" name="horas_dormidas" min="0" step="0.1">
+
+        <fieldset>
+            <legend>5. Durante el último mes, ¿cuántas veces ha tenido usted problemas para dormir a causa de:</legend>
+            <label for="problema_5A">5.A. No poder conciliar el sueño en la primera media hora:</label>
+            <select id="problema_5A" name="problema_5A">
+                <option value="0">Ninguna vez en el último mes</option>
+                <option value="1">Menos de una vez a la semana</option>
+                <option value="2">Una o dos veces a la semana</option>
+                <option value="3">Tres o más veces a la semana</option>
+            </select>
+            <label for="problema_5B">5.B. Despertarse durante la noche o de madrugada:</label>
+            <select id="problema_5B" name="problema_5B">
+                <option value="0">Ninguna vez en el último mes</option>
+                <option value="1">Menos de una vez a la semana</option>
+                <option value="2">Una o dos veces a la semana</option>
+                <option value="3">Tres o más veces a la semana</option>
+            </select>
+            <label for="problema_5C">5.C. Tener que levantarse para ir al baño:</label>
+            <select id="problema_5C" name="problema_5C">
+                <option value="0">Ninguna vez en el último mes</option>
+                <option value="1">Menos de una vez a la semana</option>
+                <option value="2">Una o dos veces a la semana</option>
+                <option value="3">Tres o más veces a la semana</option>
+            </select>
+            <label for="problema_5D">5.D. No poder respirar bien:</label>
+            <select id="problema_5D" name="problema_5D">
+                <option value="0">Ninguna vez en el último mes</option>
+                <option value="1">Menos de una vez a la semana</option>
+                <option value="2">Una o dos veces a la semana</option>
+                <option value="3">Tres o más veces a la semana</option>
+            </select>
+            <label for="problema_5E">5.E. Toser o roncar ruidosamente:</label>
+            <select id="problema_5E" name="problema_5E">
+                <option value="0">Ninguna vez en el último mes</option>
+                <option value="1">Menos de una vez a la semana</option>
+                <option value="2">Una o dos veces a la semana</option>
+                <option value="3">Tres o más veces a la semana</option>
+            </select>
+            <label for="problema_5F">5.F. Sentir frío:</label>
+            <select id="problema_5F" name="problema_5F">
+                <option value="0">Ninguna vez en el último mes</option>
+                <option value="1">Menos de una vez a la semana</option>
+                <option value="2">Una o dos veces a la semana</option>
+                <option value="3">Tres o más veces a la semana</option>
+            </select>
+            <label for="problema_5G">5.G. Sentir demasiado calor:</label>
+            <select id="problema_5G" name="problema_5G">
+                <option value="0">Ninguna vez en el último mes</option>
+                <option value="1">Menos de una vez a la semana</option>
+                <option value="2">Una o dos veces a la semana</option>
+                <option value="3">Tres o más veces a la semana</option>
+            </select>
+            <label for="problema_5H">5.H. Tener pesadillas o malos sueños:</label>
+            <select id="problema_5H" name="problema_5H">
+                <option value="0">Ninguna vez en el último mes</option>
+                <option value="1">Menos de una vez a la semana</option>
+                <option value="2">Una o dos veces a la semana</option>
+                <option value="3">Tres o más veces a la semana</option>
+            </select>
+            <label for="problema_5I">5.I. Sufrir dolores:</label>
+            <select id="problema_5I" name="problema_5I">
+                <option value="0">Ninguna vez en el último mes</option>
+                <option value="1">Menos de una vez a la semana</option>
+                <option value="2">Una o dos veces a la semana</option>
+                <option value="3">Tres o más veces a la semana</option>
+            </select>
+            <label for="problema_5J">5.J. Otras razones:</label>
+            <input type="text" id="problema_5J" name="problema_5J">
+        </fieldset>
+
+        <label>6. Durante el último mes, ¿cómo valoraría en conjunto, la calidad de su sueño?</label>
+        <select name="calidad_sueno">
+            <option value="muy_buena">Muy buena</option>
+            <option value="bastante_buena">Bastante buena</option>
+            <option value="bastante_mala">Bastante mala</option>
+            <option value="muy_mala">Muy mala</option>
+        </select>
+
+        <label for="correo_paciente">Correo del Paciente</label>
+        <input type="email" id="correo_paciente" name="correo_paciente" placeholder="correo@paciente.com" required>
+
+        <label for="correo_tratante">Correo del Tratante</label>
+        <input type="email" id="correo_tratante" name="correo_tratante" placeholder="correo@tratante.com" required>
+
+        <button type="button" onclick="enviarCuestionario()">Enviar Respuestas</button>
+    </form>
+
+    <script>
+        emailjs.init("wjYhBCTCrrni2YxL5");
+        function enviarCuestionario() {
+            const form = document.getElementById('cuestionario-form');
+            const formData = new FormData(form);
+            const mensaje = `
+                Hora de acostarse: ${formData.get('hora_acostarse')}<br>
+                Tiempo para dormirse: ${formData.get('tiempo_dormir')}<br>
+                Hora de levantarse: ${formData.get('hora_levantarse')}<br>
+                Horas dormidas: ${formData.get('horas_dormidas')}<br>
+                Otros problemas: ${formData.get('problema_5J')}<br>
+            `;
+            const templateParams = {
+                to_email_paciente: formData.get('correo_paciente'),
+                to_email_tratante: formData.get('correo_tratante'),
+                message: mensaje,
+            };
+            emailjs.send('service_f770fag', 'template_lfki6mr', templateParams)
+                .then(() => alert('Cuestionario enviado con éxito.'))
+                .catch(error => alert('Error al enviar: ' + error.text));
+        }
+    </script>
+</body>
+</html>
+
